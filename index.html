@@ -506,13 +506,30 @@
     <div class="section-label">Free audit</div>
     <h2>See exactly what's holding your social media back.</h2>
     <p class="section-sub" style="margin: 0 auto 0.5rem;">Drop your clinic name and Instagram handle. We'll send a free, personalized audit within 24 hours. No calls. No pitch. Just honest feedback.</p>
-    <div class="audit-form">
-      <input type="text" placeholder="Clinic name" />
-      <input type="text" placeholder="Instagram handle (@yourhandle)" />
-      <input type="email" placeholder="Your email" />
+    <form class="audit-form" name="audit-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="auditForm">
+      <input type="hidden" name="form-name" value="audit-request" />
+      <p style="display:none;"><input name="bot-field" /></p>
+      <input type="text" name="clinic_name" placeholder="Clinic name" required />
+      <input type="text" name="instagram" placeholder="Instagram handle (@yourhandle)" />
+      <input type="email" name="email" placeholder="Your email" required />
       <button type="submit">Send My Free Audit →</button>
+    </form>
+    <div id="auditSuccess" style="display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:1rem 1.5rem; margin-top:1.5rem; color:#166534; font-size:0.95rem;">
+      ✅ Got it! Your free audit will be in your inbox within 24 hours.
     </div>
     <p style="font-size: 0.78rem; color: var(--gray); margin-top: 1rem;">No spam. No calls. Audit delivered within 24 hours.</p>
+    <script>
+      document.getElementById('auditForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = this;
+        fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: new URLSearchParams(new FormData(form)).toString()
+        }).then(() => {
+          form.style.display = 'none';
+          document.getElementById('auditSuccess').style.display = 'block';
+        }).catch(() => form.submit());
+      });
+    </script>
   </div>
 </section>
 
