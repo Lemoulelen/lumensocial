@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LumenSocial — Social Media for NYC Med Spas</title>
+  <meta name="description" content="Fully managed social media for NYC med spas and aesthetic clinics. No calls. No meetings. Just results. 60-day guarantee."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --cream: #faf9f7;
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --gray: #6b6b6b;
+      --light-gray: #f0efed;
+      --border: #e8e5e0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--gold); }
+    .nav-cta {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* HERO */
+    .hero {
+      padding: 7rem 5% 6rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 2.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.2s, opacity 0.2s;
+      margin-bottom: 1rem;
+    }
+    .hero-cta:hover { transform: translateY(-2px); opacity: 0.88; }
+    .hero-note {
+      font-size: 0.82rem;
+      color: var(--gray);
+    }
+
+    /* SOCIAL PROOF BAR */
+    .proof-bar {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 5%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gray);
+      letter-spacing: 0.02em;
+    }
+    .proof-bar strong { color: var(--black); }
+
+    /* SECTION BASE */
+    section { padding: 6rem 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* PAIN POINTS */
+    .pain { background: var(--black); color: var(--white); }
+    .pain .section-label { color: var(--gold); }
+    .pain h2 { color: var(--white); }
+    .pain .section-sub { color: #999; }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .pain-card {
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 1.8rem;
+    }
+    .pain-card .icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .pain-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.9rem; color: #888; line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0 auto 1.2rem;
+      border: 2px solid var(--border);
+    }
+    .step h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+    /* PACKAGES */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+    .package {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+    }
+    .package.featured {
+      border-color: var(--gold);
+      background: #fdfaf5;
+    }
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.8rem;
+      border-radius: 100px;
+    }
+    .package-name { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); margin-bottom: 0.5rem; }
+    .package-price { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .package-price span { font-size: 1rem; font-weight: 400; color: var(--gray); }
+    .package-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .package ul { list-style: none; padding: 0; }
+    .package ul li { font-size: 0.88rem; padding: 0.4rem 0; color: #444; display: flex; align-items: flex-start; gap: 0.5rem; }
+    .package ul li::before { content: "✓"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .package-btn {
+      display: block;
+      text-align: center;
+      margin-top: 1.8rem;
+      padding: 0.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+      background: var(--black);
+      color: var(--white);
+    }
+    .package.featured .package-btn { background: var(--gold); }
+    .package-btn:hover { opacity: 0.8; }
+
+    /* GUARANTEE */
+    .guarantee {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .guarantee-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .guarantee-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+    .guarantee h2 { margin-bottom: 1rem; }
+    .guarantee p { color: var(--gray); font-size: 1.05rem; line-height: 1.7; }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+    }
+    .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-section p { color: #888; margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 5%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--gray);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* AUDIT FORM */
+    .audit-form {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .audit-form input {
+      padding: 0.75rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      min-width: 240px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .audit-form input:focus { border-color: var(--gold); }
+    .audit-form button {
+      padding: 0.75rem 1.6rem;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .audit-form button:hover { opacity: 0.85; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 4%; }
+      .hero { padding: 4rem 4% 4rem; }
+      section { padding: 4rem 4%; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Lumen<span>Social</span></div>
+  <a href="#audit" class="nav-cta">Get Free Audit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">NYC Med Spa & Aesthetic Clinic Marketing</div>
+  <h1>Your social media,<br/><em>completely handled.</em></h1>
+  <p class="hero-sub">
+    LumenSocial manages everything — content, graphics, posting, analytics.
+    No calls. No meetings. Just consistent growth landing in your inbox every week.
+  </p>
+  <a href="#audit" class="hero-cta">Get Your Free Social Media Audit →</a>
+  <p class="hero-note">No calls required · 60-day results guarantee · NYC specialists</p>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  Exclusively serving <strong>NYC Med Spas & Aesthetic Clinics</strong> &nbsp;·&nbsp;
+  <strong>60-Day Results Guarantee</strong> &nbsp;·&nbsp;
+  Everything managed for you &nbsp;·&nbsp;
+  <strong>No calls. No meetings. Ever.</strong>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="section-inner">
+    <div class="section-label">Sound familiar?</div>
+    <h2>You're too busy to<br/>do social media right.</h2>
+    <p class="section-sub">You know Instagram matters. You just don't have time to do it consistently — and inconsistent posting is worse than none at all.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">📅</div>
+        <h3>Posting goes silent for weeks</h3>
+        <p>Between clients, staff, and operations — social media keeps falling off the list.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">📉</div>
+        <h3>Low engagement, fewer DMs</h3>
+        <p>Inconsistent posting tanks your reach. New clients can't find you when they're ready to book.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">🎨</div>
+        <h3>Content looks unprofessional</h3>
+        <p>Your clinic looks incredible in person. Your Instagram doesn't reflect that yet.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">⏰</div>
+        <h3>No time to learn the algorithm</h3>
+        <p>Social media best practices change monthly. You didn't open a med spa to become a content creator.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <h2>Set up once.<br/>We handle everything.</h2>
+    <p class="section-sub">No onboarding calls. No weekly check-ins. No meetings — ever. Just results delivered automatically.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Get your free audit</h3>
+        <p>We analyze your current social presence and send you a full report — on us.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Review your proposal</h3>
+        <p>We send a custom package based on your clinic. Review, sign, and pay — all online.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Complete intake form</h3>
+        <p>Tell us about your brand, services, and vibe. Takes 10 minutes. One time only.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>We take over</h3>
+        <p>Content, graphics, scheduling — all handled. You get a weekly report every Monday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section style="background: var(--cream); border-top: 1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <h2>Simple, transparent pricing.</h2>
+    <p class="section-sub">No hidden fees. No contracts after month 1. Cancel anytime.</p>
+    <div class="packages-grid">
+
+      <div class="package">
+        <div class="package-name">Glow</div>
+        <div class="package-price">$1,500<span>/mo</span></div>
+        <div class="package-desc">For clinics getting started with consistent social media.</div>
+        <ul>
+          <li>20 posts/month (IG + FB)</li>
+          <li>AI-crafted captions + hashtags</li>
+          <li>4 branded graphics/month</li>
+          <li>Monthly performance report</li>
+          <li>Email support (48hr)</li>
+        </ul>
+        <a href="#audit" class="package-btn">Get Started →</a>
+      </div>
+
+      <div class="package featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="package-name">Radiance</div>
+        <div class="package-price">$2,500<span>/mo</span></div>
+        <div class="package-desc">For established clinics ready to grow their following and bookings.</div>
+        <ul>
+          <li>30 posts/month (IG + FB + TikTok)</li>
+          <li>Captions, hashtags, CTAs</li>
+          <li>8 branded graphics + 4 carousels</li>
+          <li>10 stories/month</li>
+          <li>Weekly performance reports</li>
+          <li>Competitor monitoring</li>
+          <li>Email support (24hr)</li>
+        </ul>
+        <a href="#audit" class="package-btn">Get Started →</a>
+      </div>
+
+      <div class="package">
+        <div class="package-name">Luminance</div>
+        <div class="package-price">$4,000<span>/mo</span></div>
+        <div class="package-desc">For multi-location clinics or those ready to dominate their market.</div>
+        <ul>
+          <li>45 posts/month, all platforms</li>
+          <li>Full content calendar</li>
+          <li>15 graphics + 8 carousels + 4 Reel scripts</li>
+          <li>Ad copy (up to 2 campaigns)</li>
+          <li>Weekly reports + monthly strategy recap</li>
+          <li>Priority same-day support</li>
+        </ul>
+        <a href="#audit" class="package-btn">Get Started →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="section-inner">
+    <div class="guarantee-inner">
+      <div class="guarantee-icon">🛡️</div>
+      <h2>The 60-Day Guarantee</h2>
+      <p>If you don't see measurable growth in your first 60 days — more followers, higher engagement, or more DMs — we keep working for free until you do. No arguments. No hoops. That's our promise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT CTA -->
+<section id="audit">
+  <div class="section-inner" style="text-align: center; max-width: 700px; margin: 0 auto;">
+    <div class="section-label">Free audit</div>
+    <h2>See exactly what's holding your social media back.</h2>
+    <p class="section-sub" style="margin: 0 auto 0.5rem;">Drop your clinic name and Instagram handle. We'll send a free, personalized audit within 24 hours. No calls. No pitch. Just honest feedback.</p>
+    <div class="audit-form">
+      <input type="text" placeholder="Clinic name" />
+      <input type="text" placeholder="Instagram handle (@yourhandle)" />
+      <input type="email" placeholder="Your email" />
+      <button type="submit">Send My Free Audit →</button>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--gray); margin-top: 1rem;">No spam. No calls. Audit delivered within 24 hours.</p>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <div class="section-inner" style="max-width: 700px; margin: 0 auto;">
+    <h2>Ready to hand off your social media?</h2>
+    <p>Join NYC med spas and aesthetic clinics that let us handle the content while they focus on clients.</p>
+    <a href="#audit" class="cta-btn">Get Your Free Audit →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Lumen<span>Social</span></div>
+  <div>Exclusively serving NYC Med Spas & Aesthetic Clinics</div>
+  <div>hello@lumensocial.co</div>
+</footer>
+
+</body>
+</html>
